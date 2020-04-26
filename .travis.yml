@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true aidario/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "aidario-docker-react"
+  env: "AidarioDockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-174879070563"
+  bucket_path: "aidario-docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
